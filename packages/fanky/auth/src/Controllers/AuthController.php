@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use Fanky\Auth\Auth;
+use Illuminate\Http\Response;
 use Request;
-use App\User;
-//use Auth;
 use Cookie;
 
 class AuthController extends Controller {
@@ -52,7 +51,7 @@ class AuthController extends Controller {
 			$error = Request::input('error');
 			$cookie1 = Cookie::forget('lc_site_id');
 			$cookie2 = Cookie::forget('lc_remember_token');
-			$response = new \Illuminate\Http\Response(view('auth::login', ['error' => $error]));
+			$response = new Response(view('auth::login', ['error' => $error]));
 
 			return $response->withCookie($cookie1)->withCookie($cookie2);
 		}

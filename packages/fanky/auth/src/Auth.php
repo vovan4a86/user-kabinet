@@ -1,17 +1,17 @@
 <?php namespace Fanky\Auth;
 
+use Fanky\Admin\Models\AdminUser;
 use Illuminate\Http\Response;
 use Request;
 use Session;
 use Cookie;
-use App\User;
 
 class Auth
 {
 	protected static $user;
 
-	public static function init()
-	{
+	public static function init(): bool
+    {
 		if (self::logedIn()) return true;
 		$user = Session::get('auth_user');
 		if ($user) {
@@ -22,13 +22,13 @@ class Auth
 		return self::cookieAuth();
 	}
 
-	public static function cookieAuth()
-	{
+	public static function cookieAuth(): bool
+    {
 		$user_id = Request::cookie('user_id');
 		$remember_token = Request::cookie('remember_token');
-		
+
 		if ($user_id && $remember_token) {
-			self::$user = User::where('id', $user_id)->where('remember_token', $remember_token)->first();
+			self::$user = AdminUser::where('id', $user_id)->where('remember_token', $remember_token)->first();
 		}
 
 		if (self::logedIn()) {
@@ -39,12 +39,12 @@ class Auth
 		return false;
 	}
 
-	public static function login($username, $password, $remember = false)
-	{
+	public static function login($username, $password, $remember = false): bool
+    {
 		$password = md5(md5($password));
-		
-		self::$user = User::where('username', $username)->where('password', $password)->first();
-		
+
+		self::$user = AdminUser::where('username', $username)->where('password', $password)->first();
+
 		if ($remember) {
 			self::cookieRemember();
 		}
@@ -53,12 +53,12 @@ class Auth
 			Session::put('auth_user', self::$user);
 			return true;
 		}
-		
+
 		return false;
 	}
 
-	public static function forceLogin($user, $remember = false)
-	{
+	public static function forceLogin($user, $remember = false): bool
+    {
 		self::$user = $user;
 
 		if ($remember) {
@@ -69,7 +69,7 @@ class Auth
 			Session::put('auth_user', self::$user);
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -104,8 +104,8 @@ class Auth
 		$response->withCookie($cookie1, $cookie2);
 	}
 
-	public static function logedIn()
-	{
+	public static function logedIn(): bool
+    {
 		return (bool)(self::$user && self::$user->id);
 	}
 

@@ -1,22 +1,22 @@
 <?php namespace Fanky\Admin\Controllers;
+use Fanky\Admin\Models\AdminUser;
 use Request;
 use Validator;
 use DB;
-use App\User;
 
 class AdminUsersController extends AdminController {
 
 	public function getIndex()
 	{
-		$users = User::all();
+		$users = AdminUser::all();
 
 		return view('admin::users.main', ['users' => $users]);
 	}
 
 	public function postEdit($id = null)
 	{
-		if (!$id || !($user = User::findOrFail($id))) {
-			$user = new User;
+		if (!$id || !($user = AdminUser::findOrFail($id))) {
+			$user = new AdminUser;
 		}
 
 		return view('admin::users.edit', ['user' => $user]);
@@ -41,10 +41,10 @@ class AdminUsersController extends AdminController {
 		}
 
 		// сохраняем страницу
-		$user = User::find($id);
+		$user = AdminUser::find($id);
 		if (!$user) {
 			$data['status'] = 1;
-			$user = User::create($data);
+			$user = AdminUser::create($data);
 		} else {
 			$user->update($data);
 		}
@@ -54,7 +54,7 @@ class AdminUsersController extends AdminController {
 
 	public function postDelete($id)
 	{
-		$user = User::findOrFail($id);
+		$user = AdminUser::findOrFail($id);
 		$user->delete();
 
 		return ['success' => true];

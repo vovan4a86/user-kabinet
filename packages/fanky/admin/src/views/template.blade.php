@@ -39,22 +39,22 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!--<img src="/adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>-->
-                            <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                            <span class="hidden-xs">{{ AuthAdmin::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <!--<img src="/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />-->
                                 <p>
-                                    {{ Auth::user()->name }}
+                                    {{ AuthAdmin::user()->name }}
                                     <small>
-                                        Зарегистрирован {{ date('d.m.Y', strtotime(Auth::user()->created_at)) }}</small>
+                                        Зарегистрирован {{ date('d.m.Y', strtotime(AuthAdmin::user()->created_at)) }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ route('admin.users.edit', [Auth::user()->id]) }}"
+                                    <a href="{{ route('admin.users.edit', [AuthAdmin::user()->id]) }}"
                                        class="btn btn-default btn-flat"
                                        onclick="popupAjax($(this).attr('href')); return false;">Профиль</a>
                                 </div>

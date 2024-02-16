@@ -1,7 +1,8 @@
 <?php namespace Fanky\Auth;
 
+use Fanky\Admin\Models\AdminUser;
 use Illuminate\Support\ServiceProvider;
-use App\User;
+
 
 class AuthServiceProvider extends ServiceProvider {
 
@@ -16,11 +17,11 @@ class AuthServiceProvider extends ServiceProvider {
         $this->loadViewsFrom(__DIR__.'/views', 'auth');
 
         // Создание нового пользователя
-        User::creating(function($user)
+        AdminUser::creating(function($user)
         {
             $user->remember_token = str_random(100);
         });
-        
+
         require __DIR__.'/routes.php';
     }
 
