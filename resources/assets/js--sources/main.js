@@ -41,6 +41,32 @@ export const sendAjax = (url, data, callback, type) => {
     });
 }
 
+export const sendFiles = (url, data, callback, type) => {
+    if (typeof type == 'undefined') type = 'json';
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        cache: false,
+        dataType: type,
+        processData: false, // Don't process the files
+        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+        beforeSend: function(request) {
+            return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
+        },
+        success: function(json, textStatus, jqXHR)
+        {
+            if (typeof callback == 'function') {
+                callback(json);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            alert('Не удалось выполнить запрос! Ошибка на сервере.');
+        }
+    });
+}
+
 export const login = () => {
     $('#login-form').submit(function (e) {
         e.preventDefault();
@@ -76,12 +102,42 @@ export const registration = () => {
 }
 // registration();
 
-
-export const logout = () => {
-    $('#form-logout').submit(function (e) {
-        e.preventDefault();
-        const url = $(this).attr('action');
-        sendAjax(url);
+export const loadImage = () => {
+    $('#userImage').change(function () {
+        const url = '/ajax/user/upload-image';
+        const id = $(this).data('id');
+        const image = $(this).prop('files')[0];
+        let data = new FormData();
+        data.append('id', id);
+        data.append('image', image);
+        sendFiles(url, data, function (json) {
+            if (json.success && json.image) {
+                $('.user-image').replaceWith(json.image);
+            }
+            if (!json.success) {
+                const error = '<div style="color:red;">' + json.error + '</div>'
+                $('.custom-file').after(error);
+            }
+        });
     });
 }
-// logout();
+loadImage();
+
+export const saveUserInfo = () => {
+    $('form.user-info').submit(function (e) {
+        e.preventDefault();
+        const url = $(this).attr('action');
+        let data = $(this).serialize();
+
+        sendAjax(url, data, function (json) {
+            if (json.success && json.header_user) {
+                $('.header-user').replaceWith(json.header_user);
+            }
+            if (!json.success) {
+                const error = '<div style="color:red;">' + json.error + '</div>'
+                $('.user-info .btn-success').after(error);
+            }
+        });
+    });
+}
+saveUserInfo();

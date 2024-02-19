@@ -87,8 +87,6 @@ class CatalogController extends Controller
             View::share('admin_edit_link', route('admin.catalog.catalogEdit', [$category->id]));
         }
 
-        $view = $category->products()->count() ? 'catalog.sub_category' : 'catalog.category';
-
         $data = [
             'bread' => $bread,
             'category' => $category,
@@ -99,7 +97,7 @@ class CatalogController extends Controller
             'products' => $category->products
         ];
 
-        return view($view, $data);
+        return view('catalog.category', $data);
     }
 
     public function product(Product $product)

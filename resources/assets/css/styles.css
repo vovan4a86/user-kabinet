@@ -1,0 +1,53 @@
+.user-image img {
+    border-radius: 50%;
+}
+.custom-file {
+    margin-top: 10px;
+}
+.custom-file-label::after {
+    content: "Загрузить";
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 130px;
+    align-items: start;
+}
+.breadcrumbs__list {
+    display: flex;
+    gap: 10px;
+    list-style-type: none;
+}
+.catalog-view__heading {
+    margin: 20px 0;
+}
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+.catalog-cards {
+    gap: 20px;
+}
+.catalog-text {
+    margin-top: 50px;
+}
+.product-card {
+    padding: 10px;
+}
+.product-card img{
+    padding: 5px;
+}
+.product-card .card-body {
+    border-top: 1px solid grey;
+}
+.product-info {
+    padding-left: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.info-label {
+    font-weight: bold;
+}
+.product-actions {
+    margin-top: 20px;
+}

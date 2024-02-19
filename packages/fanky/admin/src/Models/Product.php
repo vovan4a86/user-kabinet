@@ -130,7 +130,7 @@ class Product extends Model
 
     public function image(): HasOne
     {
-        return $this->hasOne(ProductImage::class, 'product_id')
+        return $this->hasOne(ProductImage::class)
             ->orderBy('order');
     }
 

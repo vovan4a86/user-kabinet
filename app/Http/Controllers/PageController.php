@@ -11,6 +11,7 @@ use Fanky\Admin\Models\SearchIndex;
 use Fanky\Auth\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
 use Request;
 use SiteHelper;
@@ -69,7 +70,6 @@ class PageController extends Controller
 
     public function dashboard()
     {
-//        \Illuminate\Support\Facades\Auth::guard('web')->logout();
         $user = \Illuminate\Support\Facades\Auth::user();
         return view('pages.dashboard', compact('user'));
     }

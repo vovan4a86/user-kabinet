@@ -10,10 +10,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadImage: () => (/* binding */ loadImage),
 /* harmony export */   login: () => (/* binding */ login),
-/* harmony export */   logout: () => (/* binding */ logout),
 /* harmony export */   registration: () => (/* binding */ registration),
-/* harmony export */   sendAjax: () => (/* binding */ sendAjax)
+/* harmony export */   saveUserInfo: () => (/* binding */ saveUserInfo),
+/* harmony export */   sendAjax: () => (/* binding */ sendAjax),
+/* harmony export */   sendFiles: () => (/* binding */ sendFiles)
 /* harmony export */ });
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);
@@ -60,6 +62,31 @@ var sendAjax = function sendAjax(url, data, callback, type) {
     }
   });
 };
+var sendFiles = function sendFiles(url, data, callback, type) {
+  if (typeof type == 'undefined') type = 'json';
+  jquery__WEBPACK_IMPORTED_MODULE_1___default().ajax({
+    url: url,
+    type: 'POST',
+    data: data,
+    cache: false,
+    dataType: type,
+    processData: false,
+    // Don't process the files
+    contentType: false,
+    // Set content type to false as jQuery will tell the server its a query string request
+    beforeSend: function beforeSend(request) {
+      return request.setRequestHeader('X-CSRF-Token', jquery__WEBPACK_IMPORTED_MODULE_1___default()("meta[name='csrf-token']").attr('content'));
+    },
+    success: function success(json, textStatus, jqXHR) {
+      if (typeof callback == 'function') {
+        callback(json);
+      }
+    },
+    error: function error(jqXHR, textStatus, errorThrown) {
+      alert('Не удалось выполнить запрос! Ошибка на сервере.');
+    }
+  });
+};
 var login = function login() {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('#login-form').submit(function (e) {
     e.preventDefault();
@@ -92,14 +119,43 @@ var registration = function registration() {
 };
 // registration();
 
-var logout = function logout() {
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#form-logout').submit(function (e) {
-    e.preventDefault();
-    var url = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr('action');
-    sendAjax(url);
+var loadImage = function loadImage() {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#userImage').change(function () {
+    var url = '/ajax/user/upload-image';
+    var id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).data('id');
+    var image = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).prop('files')[0];
+    var data = new FormData();
+    data.append('id', id);
+    data.append('image', image);
+    sendFiles(url, data, function (json) {
+      if (json.success && json.image) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.user-image').replaceWith(json.image);
+      }
+      if (!json.success) {
+        var error = '<div style="color:red;">' + json.error + '</div>';
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.custom-file').after(error);
+      }
+    });
   });
 };
-// logout();
+loadImage();
+var saveUserInfo = function saveUserInfo() {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('form.user-info').submit(function (e) {
+    e.preventDefault();
+    var url = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr('action');
+    var data = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).serialize();
+    sendAjax(url, data, function (json) {
+      if (json.success && json.header_user) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-user').replaceWith(json.header_user);
+      }
+      if (!json.success) {
+        var error = '<div style="color:red;">' + json.error + '</div>';
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.user-info .btn-success').after(error);
+      }
+    });
+  });
+};
+saveUserInfo();
 
 /***/ }),
 

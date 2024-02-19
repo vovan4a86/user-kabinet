@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\User;
 use Carbon\Carbon;
 use DB;
 use Fanky\Admin\Models\Catalog;
@@ -471,5 +472,45 @@ class AjaxController extends Controller
         session(['confirm_city' => null]);
 
         return ['success' => true];
+    }
+
+    //пользователи
+
+    public function postUploadUserImage(): array
+    {
+        $id = request()->get('id');
+        $image = request()->file('image');
+
+        if (!$id) return ['success' => false, 'error' => 'Не удалось получить ID пользователя'];
+
+        $user = User::find($id);
+
+        if ($image) {
+            $file_name = User::uploadImage($image);
+            if ($user->image) {
+                $user->deleteImage();
+            }
+            $user->update(['image' => $file_name]);
+        }
+
+        $user_image = view('pages.user_image', ['user' => $user])->render();
+
+        return ['success' => true, 'image' => $user_image];
+    }
+
+    public function postUserSaveInfo($id): array
+    {
+        $data = request()->all();
+        $user = User::find($id);
+
+        if (!$user) {
+            return ['success' => false, 'error' => 'Пользователь не найден'];
+        }
+
+        $user->update($data);
+
+        $header_user = view('blocks.header_user')->render();
+
+        return ['success' => true, 'header_user' => $header_user];
     }
 }

@@ -17,11 +17,14 @@ Route::group(
         Route::post('calc', 'AjaxController@postCalc')->name('calc');
         Route::post('callback', 'AjaxController@postCallback')->name('callback');
         Route::post('feedback', 'AjaxController@postFeedback')->name('feedback');
+
+        Route::post('user/upload-image', 'AjaxController@postUploadUserImage')->name('uploadUserImage');
+        Route::post('user/save-info/{id}', 'AjaxController@postUserSaveInfo')->name('userSaveInfo');
     }
 );
 
 Route::get('/dashboard', [PageController::class, 'dashboard'])
-    ->middleware(['auth'])->name('dashboard');
+    ->middleware(['auth.site'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -40,12 +43,6 @@ Route::group([], function () {
         Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@getIndex']);
 
         Route::any('policy', ['as' => 'policy', 'uses' => 'PageController@policy']);
-
-//        Route::any('login', ['as' => 'login', 'uses' => 'PageController@login']);
-//        Route::any('logout', ['as' => 'logout', 'uses' => 'PageController@logout']);
-//        Route::get('registration', ['as' => 'registration', 'uses' => 'PageController@getRegistration']);
-//        Route::post('registration', ['as' => 'registration', 'uses' => 'PageController@postRegistration']);
-
 
         Route::any('catalog', ['as' => 'catalog.index', 'uses' => 'CatalogController@index']);
 

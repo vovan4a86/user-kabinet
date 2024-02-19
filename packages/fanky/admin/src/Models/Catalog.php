@@ -77,8 +77,8 @@ class Catalog extends Model {
     const UPLOAD_VIDEO_ICON = '/adminlte/video.png';
 
     public static $thumbs = [
-		1 => '100x100|fit', //admin
-		2 => '353x210|fit', //list
+		1 => '100x100', //admin
+		2 => '286x180', //list
 	];
 	public static function boot() {
 		parent::boot();
