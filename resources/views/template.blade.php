@@ -11,7 +11,7 @@
 
 @yield('content')
 
-@include('blocks.footer')
+{{--@include('blocks.footer')--}}
 
 {{--@include('blocks.popups')--}}
 

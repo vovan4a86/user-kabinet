@@ -9764,7 +9764,7 @@ a.text-dark:hover, a.text-dark:focus {
     display: flex;
     flex-direction: column;
     padding-left: 130px;
-    align-items: start;
+    align-items: flex-start;
 }
 .breadcrumbs__list {
     display: flex;

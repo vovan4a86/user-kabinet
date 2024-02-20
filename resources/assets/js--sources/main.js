@@ -21,7 +21,7 @@ export const sendAjax = (url, data, callback, type) => {
     data = data || {};
     if (typeof type == 'undefined') type = 'json';
     $.ajax({
-        type: 'post',
+        type: 'POST',
         url: url,
         data: data,
         // processData: false,
@@ -123,6 +123,7 @@ export const loadImage = () => {
 }
 loadImage();
 
+//сохранить информацию о пользователе
 export const saveUserInfo = () => {
     $('form.user-info').submit(function (e) {
         e.preventDefault();
@@ -141,3 +142,23 @@ export const saveUserInfo = () => {
     });
 }
 saveUserInfo();
+
+//оставить отзыв
+export const sendOpinion = () => {
+    $('#send-opinion').submit(function (e) {
+        e.preventDefault();
+        const url = $(this).attr('action');
+        let data = $(this).serialize();
+
+        sendAjax(url, data, function (json) {
+            if (json.success && json.redirect) {
+                location.href = json.redirect;
+            }
+            if (!json.success) {
+                const error = '<div style="color:red;">' + json.error + '</div>';
+                $('#send-opinion').find('.btn-success').after(error);
+            }
+        });
+    });
+}
+sendOpinion();

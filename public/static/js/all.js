@@ -15,7 +15,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   registration: () => (/* binding */ registration),
 /* harmony export */   saveUserInfo: () => (/* binding */ saveUserInfo),
 /* harmony export */   sendAjax: () => (/* binding */ sendAjax),
-/* harmony export */   sendFiles: () => (/* binding */ sendFiles)
+/* harmony export */   sendFiles: () => (/* binding */ sendFiles),
+/* harmony export */   sendOpinion: () => (/* binding */ sendOpinion)
 /* harmony export */ });
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);
@@ -43,7 +44,7 @@ var sendAjax = function sendAjax(url, data, callback, type) {
   data = data || {};
   if (typeof type == 'undefined') type = 'json';
   jquery__WEBPACK_IMPORTED_MODULE_1___default().ajax({
-    type: 'post',
+    type: 'POST',
     url: url,
     data: data,
     // processData: false,
@@ -139,6 +140,8 @@ var loadImage = function loadImage() {
   });
 };
 loadImage();
+
+//сохранить информацию о пользователе
 var saveUserInfo = function saveUserInfo() {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('form.user-info').submit(function (e) {
     e.preventDefault();
@@ -156,6 +159,25 @@ var saveUserInfo = function saveUserInfo() {
   });
 };
 saveUserInfo();
+
+//оставить отзыв
+var sendOpinion = function sendOpinion() {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#send-opinion').submit(function (e) {
+    e.preventDefault();
+    var url = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr('action');
+    var data = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).serialize();
+    sendAjax(url, data, function (json) {
+      if (json.success && json.redirect) {
+        location.href = json.redirect;
+      }
+      if (!json.success) {
+        var error = '<div style="color:red;">' + json.error + '</div>';
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('#send-opinion').find('.btn-success').after(error);
+      }
+    });
+  });
+};
+sendOpinion();
 
 /***/ }),
 

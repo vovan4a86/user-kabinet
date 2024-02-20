@@ -475,7 +475,6 @@ class AjaxController extends Controller
     }
 
     //пользователи
-
     public function postUploadUserImage(): array
     {
         $id = request()->get('id');
@@ -513,4 +512,16 @@ class AjaxController extends Controller
 
         return ['success' => true, 'header_user' => $header_user];
     }
+
+    //отзывы
+    public function postSendOpinion(): array
+    {
+        $data = request()->all();
+
+        return [
+            'success' => true,
+            'redirect' => route('opinion-success', $data['id'])
+        ];
+    }
+
 }

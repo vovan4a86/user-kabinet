@@ -227,5 +227,4 @@ return [
 		'HTMLMin'    => HTMLMin\HTMLMin\Facades\HTMLMin::class,
 		'Menu'       => Lavary\Menu\Facade::class,
 	],
-
 ];

@@ -16,7 +16,7 @@
                              alt="{{ $product->name }}"/>
                     @else
                         <img class="card-img-top"
-                             src="{{ \Fanky\Admin\Models\Product::NO_IMAGE }}"
+                             src="{{ Product::NO_IMAGE }}"
                              width="250" height="208" alt="{{ $product->name }}"/>
                     @endif
                 </div>
@@ -33,6 +33,7 @@
                         <div class="product-actions">
                             <button class="btn-buy btn btn-success">Купить</button>
                             <button class="btn-card btn btn-info">В корзину</button>
+                            <a href="{{ route('catalog.add-opinion', $product->id) }}" class="btn-card btn btn-secondary">Оставить отзыв</a>
                         </div>
                     </div>
                 </div>

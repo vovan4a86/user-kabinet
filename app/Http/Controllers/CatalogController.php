@@ -7,7 +7,7 @@ use Fanky\Admin\Models\Catalog;
 use Fanky\Admin\Models\Page;
 use Fanky\Admin\Models\Product;
 use Fanky\Admin\Settings;
-use Fanky\Auth\Auth;
+use Auth;
 use SEOMeta;
 use Request;
 use View;
@@ -82,8 +82,8 @@ class CatalogController extends Controller
             $canonical = null;
         }
 
-        Auth::init();
-        if (Auth::user() && Auth::user()->isAdmin) {
+        \AuthAdmin::init();
+        if (\AuthAdmin::user() && \AuthAdmin::user()->isAdmin) {
             View::share('admin_edit_link', route('admin.catalog.catalogEdit', [$category->id]));
         }
 
@@ -114,8 +114,8 @@ class CatalogController extends Controller
 
         $images = $product->images;
 
-        Auth::init();
-        if (Auth::user() && Auth::user()->isAdmin) {
+        \AuthAdmin::init();
+        if (\AuthAdmin::user() && \AuthAdmin::user()->isAdmin) {
             View::share('admin_edit_link', route('admin.catalog.productEdit', [$product->id]));
         }
 
@@ -210,6 +210,22 @@ class CatalogController extends Controller
                 'description' => 'Поиск',
             ]
         );
+    }
+
+    public function addOpinion($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('catalog.add_opinion', [
+            'product' => $product
+        ]);
+    }
+
+    public function getOpinionSuccess($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('catalog.opinion_success', ['product_url' => $product->url]);
     }
 
 }

@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 7.29.3.
+ * Generated for Laravel 7.30.6.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -12,6 +12,611 @@
  */
 
     namespace Illuminate\Support\Facades { 
+            /**
+     * 
+     *
+     * @see \Illuminate\Auth\AuthManager
+     * @see \Illuminate\Contracts\Auth\Factory
+     * @see \Illuminate\Contracts\Auth\Guard
+     * @see \Illuminate\Contracts\Auth\StatefulGuard
+     */ 
+        class Auth {
+                    /**
+         * Attempt to get the guard from the local cache.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard 
+         * @static 
+         */ 
+        public static function guard($name = null)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->guard($name);
+        }
+                    /**
+         * Create a session based authentication guard.
+         *
+         * @param string $name
+         * @param array $config
+         * @return \Illuminate\Auth\SessionGuard 
+         * @static 
+         */ 
+        public static function createSessionDriver($name, $config)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->createSessionDriver($name, $config);
+        }
+                    /**
+         * Create a token based authentication guard.
+         *
+         * @param string $name
+         * @param array $config
+         * @return \Illuminate\Auth\TokenGuard 
+         * @static 
+         */ 
+        public static function createTokenDriver($name, $config)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->createTokenDriver($name, $config);
+        }
+                    /**
+         * Get the default authentication driver name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultDriver()
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->getDefaultDriver();
+        }
+                    /**
+         * Set the default guard driver the factory should serve.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */ 
+        public static function shouldUse($name)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        $instance->shouldUse($name);
+        }
+                    /**
+         * Set the default authentication driver name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */ 
+        public static function setDefaultDriver($name)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        $instance->setDefaultDriver($name);
+        }
+                    /**
+         * Register a new callback based request guard.
+         *
+         * @param string $driver
+         * @param callable $callback
+         * @return \Illuminate\Auth\AuthManager 
+         * @static 
+         */ 
+        public static function viaRequest($driver, $callback)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->viaRequest($driver, $callback);
+        }
+                    /**
+         * Get the user resolver callback.
+         *
+         * @return \Closure 
+         * @static 
+         */ 
+        public static function userResolver()
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->userResolver();
+        }
+                    /**
+         * Set the callback to be used to resolve users.
+         *
+         * @param \Closure $userResolver
+         * @return \Illuminate\Auth\AuthManager 
+         * @static 
+         */ 
+        public static function resolveUsersUsing($userResolver)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->resolveUsersUsing($userResolver);
+        }
+                    /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return \Illuminate\Auth\AuthManager 
+         * @static 
+         */ 
+        public static function extend($driver, $callback)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->extend($driver, $callback);
+        }
+                    /**
+         * Register a custom provider creator Closure.
+         *
+         * @param string $name
+         * @param \Closure $callback
+         * @return \Illuminate\Auth\AuthManager 
+         * @static 
+         */ 
+        public static function provider($name, $callback)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->provider($name, $callback);
+        }
+                    /**
+         * Determines if any guards have already been resolved.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasResolvedGuards()
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->hasResolvedGuards();
+        }
+                    /**
+         * Create the user provider implementation for the driver.
+         *
+         * @param string|null $provider
+         * @return \Illuminate\Contracts\Auth\UserProvider|null 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function createUserProvider($provider = null)
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->createUserProvider($provider);
+        }
+                    /**
+         * Get the default user provider name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultUserProvider()
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->getDefaultUserProvider();
+        }
+                    /**
+         * Get the currently authenticated user.
+         *
+         * @return \App\User|null 
+         * @static 
+         */ 
+        public static function user()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->user();
+        }
+                    /**
+         * Get the ID for the currently authenticated user.
+         *
+         * @return int|string|null 
+         * @static 
+         */ 
+        public static function id()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->id();
+        }
+                    /**
+         * Log a user into the application without sessions or cookies.
+         *
+         * @param array $credentials
+         * @return bool 
+         * @static 
+         */ 
+        public static function once($credentials = [])
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->once($credentials);
+        }
+                    /**
+         * Log the given user ID into the application without sessions or cookies.
+         *
+         * @param mixed $id
+         * @return \App\User|false 
+         * @static 
+         */ 
+        public static function onceUsingId($id)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->onceUsingId($id);
+        }
+                    /**
+         * Validate a user's credentials.
+         *
+         * @param array $credentials
+         * @return bool 
+         * @static 
+         */ 
+        public static function validate($credentials = [])
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->validate($credentials);
+        }
+                    /**
+         * Attempt to authenticate using HTTP Basic Auth.
+         *
+         * @param string $field
+         * @param array $extraConditions
+         * @return \Symfony\Component\HttpFoundation\Response|null 
+         * @static 
+         */ 
+        public static function basic($field = 'email', $extraConditions = [])
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->basic($field, $extraConditions);
+        }
+                    /**
+         * Perform a stateless HTTP Basic login attempt.
+         *
+         * @param string $field
+         * @param array $extraConditions
+         * @return \Symfony\Component\HttpFoundation\Response|null 
+         * @static 
+         */ 
+        public static function onceBasic($field = 'email', $extraConditions = [])
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->onceBasic($field, $extraConditions);
+        }
+                    /**
+         * Attempt to authenticate a user using the given credentials.
+         *
+         * @param array $credentials
+         * @param bool $remember
+         * @return bool 
+         * @static 
+         */ 
+        public static function attempt($credentials = [], $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->attempt($credentials, $remember);
+        }
+                    /**
+         * Log the given user ID into the application.
+         *
+         * @param mixed $id
+         * @param bool $remember
+         * @return \App\User|false 
+         * @static 
+         */ 
+        public static function loginUsingId($id, $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->loginUsingId($id, $remember);
+        }
+                    /**
+         * Log a user into the application.
+         *
+         * @param \Illuminate\Contracts\Auth\Authenticatable $user
+         * @param bool $remember
+         * @return void 
+         * @static 
+         */ 
+        public static function login($user, $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->login($user, $remember);
+        }
+                    /**
+         * Log the user out of the application.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function logout()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->logout();
+        }
+                    /**
+         * Log the user out of the application on their current device only.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function logoutCurrentDevice()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->logoutCurrentDevice();
+        }
+                    /**
+         * Invalidate other sessions for the current user.
+         * 
+         * The application must be using the AuthenticateSession middleware.
+         *
+         * @param string $password
+         * @param string $attribute
+         * @return bool|null 
+         * @static 
+         */ 
+        public static function logoutOtherDevices($password, $attribute = 'password')
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->logoutOtherDevices($password, $attribute);
+        }
+                    /**
+         * Register an authentication attempt event listener.
+         *
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function attempting($callback)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->attempting($callback);
+        }
+                    /**
+         * Get the last user we attempted to authenticate.
+         *
+         * @return \App\User 
+         * @static 
+         */ 
+        public static function getLastAttempted()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getLastAttempted();
+        }
+                    /**
+         * Get a unique identifier for the auth session value.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getName()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getName();
+        }
+                    /**
+         * Get the name of the cookie used to store the "recaller".
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getRecallerName()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getRecallerName();
+        }
+                    /**
+         * Determine if the user was authenticated via "remember me" cookie.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function viaRemember()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->viaRemember();
+        }
+                    /**
+         * Get the cookie creator instance used by the guard.
+         *
+         * @return \Illuminate\Contracts\Cookie\QueueingFactory 
+         * @throws \RuntimeException
+         * @static 
+         */ 
+        public static function getCookieJar()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getCookieJar();
+        }
+                    /**
+         * Set the cookie creator instance used by the guard.
+         *
+         * @param \Illuminate\Contracts\Cookie\QueueingFactory $cookie
+         * @return void 
+         * @static 
+         */ 
+        public static function setCookieJar($cookie)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->setCookieJar($cookie);
+        }
+                    /**
+         * Get the event dispatcher instance.
+         *
+         * @return \Illuminate\Contracts\Events\Dispatcher 
+         * @static 
+         */ 
+        public static function getDispatcher()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getDispatcher();
+        }
+                    /**
+         * Set the event dispatcher instance.
+         *
+         * @param \Illuminate\Contracts\Events\Dispatcher $events
+         * @return void 
+         * @static 
+         */ 
+        public static function setDispatcher($events)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->setDispatcher($events);
+        }
+                    /**
+         * Get the session store used by the guard.
+         *
+         * @return \Illuminate\Contracts\Session\Session 
+         * @static 
+         */ 
+        public static function getSession()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getSession();
+        }
+                    /**
+         * Return the currently cached user.
+         *
+         * @return \App\User|null 
+         * @static 
+         */ 
+        public static function getUser()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getUser();
+        }
+                    /**
+         * Set the current user.
+         *
+         * @param \Illuminate\Contracts\Auth\Authenticatable $user
+         * @return \Illuminate\Auth\SessionGuard 
+         * @static 
+         */ 
+        public static function setUser($user)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->setUser($user);
+        }
+                    /**
+         * Get the current request instance.
+         *
+         * @return \Symfony\Component\HttpFoundation\Request 
+         * @static 
+         */ 
+        public static function getRequest()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getRequest();
+        }
+                    /**
+         * Set the current request instance.
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @return \Illuminate\Auth\SessionGuard 
+         * @static 
+         */ 
+        public static function setRequest($request)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->setRequest($request);
+        }
+                    /**
+         * Determine if current user is authenticated. If not, throw an exception.
+         *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */ 
+        public static function authenticate()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->authenticate();
+        }
+                    /**
+         * Determine if the guard has a user instance.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasUser()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->hasUser();
+        }
+                    /**
+         * Determine if the current user is authenticated.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function check()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->check();
+        }
+                    /**
+         * Determine if the current user is a guest.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function guest()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->guest();
+        }
+                    /**
+         * Get the user provider used by the guard.
+         *
+         * @return \Illuminate\Contracts\Auth\UserProvider 
+         * @static 
+         */ 
+        public static function getProvider()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->getProvider();
+        }
+                    /**
+         * Set the user provider used by the guard.
+         *
+         * @param \Illuminate\Contracts\Auth\UserProvider $provider
+         * @return void 
+         * @static 
+         */ 
+        public static function setProvider($provider)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->setProvider($provider);
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \Illuminate\Auth\SessionGuard::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \Illuminate\Auth\SessionGuard::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \Illuminate\Auth\SessionGuard::hasMacro($name);
+        }
+         
+    }
             /**
      * 
      *
@@ -103,7 +708,7 @@
                         return $instance->setBasePath($basePath);
         }
                     /**
-         * Get the path to the application "app" delivery.
+         * Get the path to the application "app" directory.
          *
          * @param string $path
          * @return string 
@@ -115,7 +720,7 @@
                         return $instance->path($path);
         }
                     /**
-         * Set the application delivery.
+         * Set the application directory.
          *
          * @param string $path
          * @return \Illuminate\Foundation\Application 
@@ -139,7 +744,7 @@
                         return $instance->basePath($path);
         }
                     /**
-         * Get the path to the bootstrap delivery.
+         * Get the path to the bootstrap directory.
          *
          * @param string $path Optionally, a path to append to the bootstrap path
          * @return string 
@@ -163,7 +768,7 @@
                         return $instance->configPath($path);
         }
                     /**
-         * Get the path to the database delivery.
+         * Get the path to the database directory.
          *
          * @param string $path Optionally, a path to append to the database path
          * @return string 
@@ -175,7 +780,7 @@
                         return $instance->databasePath($path);
         }
                     /**
-         * Set the database delivery.
+         * Set the database directory.
          *
          * @param string $path
          * @return \Illuminate\Foundation\Application 
@@ -198,7 +803,7 @@
                         return $instance->langPath();
         }
                     /**
-         * Get the path to the public / web delivery.
+         * Get the path to the public / web directory.
          *
          * @return string 
          * @static 
@@ -209,7 +814,7 @@
                         return $instance->publicPath();
         }
                     /**
-         * Get the path to the storage delivery.
+         * Get the path to the storage directory.
          *
          * @return string 
          * @static 
@@ -220,7 +825,7 @@
                         return $instance->storagePath();
         }
                     /**
-         * Set the storage delivery.
+         * Set the storage directory.
          *
          * @param string $path
          * @return \Illuminate\Foundation\Application 
@@ -232,7 +837,7 @@
                         return $instance->useStoragePath($path);
         }
                     /**
-         * Get the path to the resources delivery.
+         * Get the path to the resources directory.
          *
          * @param string $path
          * @return string 
@@ -244,7 +849,7 @@
                         return $instance->resourcePath($path);
         }
                     /**
-         * Get the path to the environment file delivery.
+         * Get the path to the environment file directory.
          *
          * @return string 
          * @static 
@@ -255,7 +860,7 @@
                         return $instance->environmentPath();
         }
                     /**
-         * Set the delivery for the environment file.
+         * Set the directory for the environment file.
          *
          * @param string $path
          * @return \Illuminate\Foundation\Application 
@@ -1161,7 +1766,7 @@
          * Call the given Closure / class@method and inject its dependencies.
          *
          * @param callable|string $callback
-         * @param \Illuminate\Container\array<string,  mixed>  $parameters
+         * @param array<string, mixed> $parameters
          * @param string|null $defaultMethod
          * @return mixed 
          * @throws \InvalidArgumentException
@@ -2466,7 +3071,7 @@
                         return $instance->getFilesystem();
         }
                     /**
-         * Get the working delivery of the cache.
+         * Get the working directory of the cache.
          *
          * @return string 
          * @static 
@@ -4091,7 +4696,7 @@
      */ 
         class File {
                     /**
-         * Determine if a file or delivery exists.
+         * Determine if a file or directory exists.
          *
          * @param string $path
          * @return bool 
@@ -4103,7 +4708,7 @@
                         return $instance->exists($path);
         }
                     /**
-         * Determine if a file or delivery is missing.
+         * Determine if a file or directory is missing.
          *
          * @param string $path
          * @return bool 
@@ -4231,7 +4836,7 @@
                         return $instance->append($path, $data);
         }
                     /**
-         * Get or set UNIX mode of a file or delivery.
+         * Get or set UNIX mode of a file or directory.
          *
          * @param string $path
          * @param int|null $mode
@@ -4282,7 +4887,7 @@
                         return $instance->copy($path, $target);
         }
                     /**
-         * Create a symlink to the target file or delivery. On Windows, a hard link is created if the target is a file.
+         * Create a symlink to the target file or directory. On Windows, a hard link is created if the target is a file.
          *
          * @param string $target
          * @param string $link
@@ -4319,7 +4924,7 @@
                         return $instance->basename($path);
         }
                     /**
-         * Extract the parent delivery from a file path.
+         * Extract the parent directory from a file path.
          *
          * @param string $path
          * @return string 
@@ -4403,7 +5008,7 @@
                         return $instance->lastModified($path);
         }
                     /**
-         * Determine if the given path is a delivery.
+         * Determine if the given path is a directory.
          *
          * @param string $directory
          * @return bool 
@@ -4464,7 +5069,7 @@
                         return $instance->glob($pattern, $flags);
         }
                     /**
-         * Get an array of all files in a delivery.
+         * Get an array of all files in a directory.
          *
          * @param string $directory
          * @param bool $hidden
@@ -4477,7 +5082,7 @@
                         return $instance->files($directory, $hidden);
         }
                     /**
-         * Get all of the files from the given delivery (recursive).
+         * Get all of the files from the given directory (recursive).
          *
          * @param string $directory
          * @param bool $hidden
@@ -4490,7 +5095,7 @@
                         return $instance->allFiles($directory, $hidden);
         }
                     /**
-         * Get all of the directories within a given delivery.
+         * Get all of the directories within a given directory.
          *
          * @param string $directory
          * @return array 
@@ -4502,7 +5107,7 @@
                         return $instance->directories($directory);
         }
                     /**
-         * Ensure a delivery exists.
+         * Ensure a directory exists.
          *
          * @param string $path
          * @param int $mode
@@ -4516,7 +5121,7 @@
                         $instance->ensureDirectoryExists($path, $mode, $recursive);
         }
                     /**
-         * Create a delivery.
+         * Create a directory.
          *
          * @param string $path
          * @param int $mode
@@ -4531,7 +5136,7 @@
                         return $instance->makeDirectory($path, $mode, $recursive, $force);
         }
                     /**
-         * Move a delivery.
+         * Move a directory.
          *
          * @param string $from
          * @param string $to
@@ -4545,7 +5150,7 @@
                         return $instance->moveDirectory($from, $to, $overwrite);
         }
                     /**
-         * Copy a delivery from one location to another.
+         * Copy a directory from one location to another.
          *
          * @param string $directory
          * @param string $destination
@@ -4559,9 +5164,9 @@
                         return $instance->copyDirectory($directory, $destination, $options);
         }
                     /**
-         * Recursively delete a delivery.
+         * Recursively delete a directory.
          * 
-         * The delivery itself may be optionally preserved.
+         * The directory itself may be optionally preserved.
          *
          * @param string $directory
          * @param bool $preserve
@@ -4574,7 +5179,7 @@
                         return $instance->deleteDirectory($directory, $preserve);
         }
                     /**
-         * Remove all of the directories within a given delivery.
+         * Remove all of the directories within a given directory.
          *
          * @param string $directory
          * @return bool 
@@ -4586,7 +5191,7 @@
                         return $instance->deleteDirectories($directory);
         }
                     /**
-         * Empty the specified delivery of all files and folders.
+         * Empty the specified directory of all files and folders.
          *
          * @param string $directory
          * @return bool 
@@ -5548,7 +6153,7 @@
                     /**
          * Queue a new e-mail message for sending.
          *
-         * @param string|array $view
+         * @param \Illuminate\Contracts\Mail\Mailable|string|array $view
          * @param string|null $queue
          * @return mixed 
          * @static 
@@ -6047,57 +6652,6 @@
                         return $instance->setConnectionName($name);
         }
                     /**
-         * Release a reserved job back onto the queue.
-         *
-         * @param string $queue
-         * @param \Illuminate\Queue\Jobs\DatabaseJobRecord $job
-         * @param int $delay
-         * @return mixed 
-         * @static 
-         */ 
-        public static function release($queue, $job, $delay)
-        {
-                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
-                        return $instance->release($queue, $job, $delay);
-        }
-                    /**
-         * Delete a reserved job from the queue.
-         *
-         * @param string $queue
-         * @param string $id
-         * @return void 
-         * @throws \Throwable
-         * @static 
-         */ 
-        public static function deleteReserved($queue, $id)
-        {
-                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
-                        $instance->deleteReserved($queue, $id);
-        }
-                    /**
-         * Get the queue or return the default.
-         *
-         * @param string|null $queue
-         * @return string 
-         * @static 
-         */ 
-        public static function getQueue($queue)
-        {
-                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
-                        return $instance->getQueue($queue);
-        }
-                    /**
-         * Get the underlying database instance.
-         *
-         * @return \Illuminate\Database\Connection 
-         * @static 
-         */ 
-        public static function getDatabase()
-        {
-                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
-                        return $instance->getDatabase();
-        }
-                    /**
          * Get the retry delay for an object-based queue handler.
          *
          * @param mixed $job
@@ -6106,7 +6660,7 @@
          */ 
         public static function getJobRetryDelay($job)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         return $instance->getJobRetryDelay($job);
         }
                     /**
@@ -6118,7 +6672,7 @@
          */ 
         public static function getJobExpiration($job)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         return $instance->getJobExpiration($job);
         }
                     /**
@@ -6130,7 +6684,7 @@
          */ 
         public static function createPayloadUsing($callback)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        \Illuminate\Queue\DatabaseQueue::createPayloadUsing($callback);
+                        \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
         }
                     /**
          * Set the IoC container instance.
@@ -6141,7 +6695,7 @@
          */ 
         public static function setContainer($container)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         $instance->setContainer($container);
         }
          
@@ -6720,12 +7274,12 @@
                     /**
          * Clones a request and overrides some of its parameters.
          *
-         * @param array $query The GET parameters
-         * @param array $request The POST parameters
-         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
-         * @param array $cookies The COOKIE parameters
-         * @param array $files The FILES parameters
-         * @param array $server The SERVER parameters
+         * @param array|null $query The GET parameters
+         * @param array|null $request The POST parameters
+         * @param array|null $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array|null $cookies The COOKIE parameters
+         * @param array|null $files The FILES parameters
+         * @param array|null $server The SERVER parameters
          * @return static 
          * @static 
          */ 
@@ -7006,7 +7560,6 @@
          *
          * @param array $proxies A list of trusted proxies, the string 'REMOTE_ADDR' will be replaced with $_SERVER['REMOTE_ADDR']
          * @param int $trustedHeaderSet A bit field of Request::HEADER_*, to set which headers to trust from your proxies
-         * @throws \InvalidArgumentException When $trustedHeaderSet is invalid
          * @static 
          */ 
         public static function setTrustedProxies($proxies, $trustedHeaderSet)
@@ -7016,7 +7569,7 @@
                     /**
          * Gets the list of trusted proxies.
          *
-         * @return array An array of trusted proxies
+         * @return array 
          * @static 
          */ 
         public static function getTrustedProxies()
@@ -7048,7 +7601,7 @@
                     /**
          * Gets the list of trusted host patterns.
          *
-         * @return array An array of trusted host patterns
+         * @return array 
          * @static 
          */ 
         public static function getTrustedHosts()
@@ -7061,7 +7614,7 @@
          * It builds a normalized query string, where keys/value pairs are alphabetized,
          * have consistent escaping and unneeded delimiters are removed.
          *
-         * @return string A normalized query string for the Request
+         * @return string 
          * @static 
          */ 
         public static function normalizeQueryString($qs)
@@ -7088,7 +7641,7 @@
                     /**
          * Checks whether support for the _method request parameter is enabled.
          *
-         * @return bool True when the _method request parameter is enabled, false otherwise
+         * @return bool 
          * @static 
          */ 
         public static function getHttpMethodParameterOverride()
@@ -7114,7 +7667,8 @@
          * like whether the session is started or not. It is just a way to check if this Request
          * is associated with a Session instance.
          *
-         * @return bool true when the Request contains a Session object, false otherwise
+         * @param bool $skipIfUninitialized When true, ignores factories injected by `setSessionFactory`
+         * @return bool 
          * @static 
          */ 
         public static function hasSession()
@@ -7136,6 +7690,7 @@
          * 
          *
          * @internal 
+         * @param \Symfony\Component\HttpFoundation\callable():  SessionInterface $factory
          * @static 
          */ 
         public static function setSessionFactory($factory)
@@ -7152,7 +7707,7 @@
          * 
          * Use this method carefully; you should use getClientIp() instead.
          *
-         * @return array The client IP addresses
+         * @return array 
          * @see getClientIp()
          * @static 
          */ 
@@ -7174,7 +7729,7 @@
          * ("Client-Ip" for instance), configure it via the $trustedHeaderSet
          * argument of the Request::setTrustedProxies() method instead.
          *
-         * @return string|null The client IP address
+         * @return string|null 
          * @see getClientIps()
          * @see https://wikipedia.org/wiki/X-Forwarded-For
          * @static 
@@ -7268,7 +7823,7 @@
          * 
          * The "X-Forwarded-Port" header must contain the client port.
          *
-         * @return int|string can be a string if fetched from the server bag
+         * @return int|string|null Can be a string if fetched from the server bag
          * @static 
          */ 
         public static function getPort()
@@ -7301,7 +7856,7 @@
                     /**
          * Gets the user info.
          *
-         * @return string A user name and, optionally, scheme-specific information about how to gain authorization to access the server
+         * @return string|null A user name if any and, optionally, scheme-specific information about how to gain authorization to access the server
          * @static 
          */ 
         public static function getUserInfo()
@@ -7339,7 +7894,7 @@
          * If the URL was called with basic authentication, the user
          * and the password are not added to the generated string.
          *
-         * @return string The scheme and HTTP host
+         * @return string 
          * @static 
          */ 
         public static function getSchemeAndHttpHost()
@@ -7350,7 +7905,7 @@
                     /**
          * Generates a normalized URI (URL) for the Request.
          *
-         * @return string A normalized URI (URL) for the Request
+         * @return string 
          * @see getQueryString()
          * @static 
          */ 
@@ -7363,7 +7918,7 @@
          * Generates a normalized URI for the given path.
          *
          * @param string $path A path to use instead of the current one
-         * @return string The normalized URI for the path
+         * @return string 
          * @static 
          */ 
         public static function getUriForPath($path)
@@ -7386,7 +7941,7 @@
          * - "/a/b/c/other" -> "other"
          * - "/a/x/y"       -> "../../x/y"
          *
-         * @return string The relative target path
+         * @return string 
          * @static 
          */ 
         public static function getRelativeUriForPath($path)
@@ -7400,7 +7955,7 @@
          * It builds a normalized query string, where keys/value pairs are alphabetized
          * and have consistent escaping.
          *
-         * @return string|null A normalized query string for the Request
+         * @return string|null 
          * @static 
          */ 
         public static function getQueryString()
@@ -7462,7 +8017,7 @@
          * 
          * The method is always an uppercased string.
          *
-         * @return string The request method
+         * @return string 
          * @see getRealMethod()
          * @static 
          */ 
@@ -7474,7 +8029,7 @@
                     /**
          * Gets the "real" request method.
          *
-         * @return string The request method
+         * @return string 
          * @see getMethod()
          * @static 
          */ 
@@ -7486,7 +8041,7 @@
                     /**
          * Gets the mime type associated with the format.
          *
-         * @return string|null The associated mime type (null if not found)
+         * @return string|null 
          * @static 
          */ 
         public static function getMimeType($format)
@@ -7497,7 +8052,7 @@
                     /**
          * Gets the mime types associated with the format.
          *
-         * @return array The associated mime types
+         * @return array 
          * @static 
          */ 
         public static function getMimeTypes($format)
@@ -7507,7 +8062,7 @@
                     /**
          * Gets the format associated with the mime type.
          *
-         * @return string|null The format (null if not found)
+         * @return string|null 
          * @static 
          */ 
         public static function getFormat($mimeType)
@@ -7536,7 +8091,7 @@
          *  * $default
          *
          * @see getPreferredFormat
-         * @return string|null The request format
+         * @return string|null 
          * @static 
          */ 
         public static function getRequestFormat($default = 'html')
@@ -7557,7 +8112,7 @@
                     /**
          * Gets the format associated with the request.
          *
-         * @return string|null The format (null if no content type is present)
+         * @return string|null 
          * @static 
          */ 
         public static function getContentType()
@@ -7646,7 +8201,7 @@
          * Checks whether the method is cacheable or not.
          *
          * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
-         * @return bool True for GET and HEAD, false otherwise
+         * @return bool 
          * @static 
          */ 
         public static function isMethodCacheable()
@@ -7663,7 +8218,7 @@
          * if the proxy is trusted (see "setTrustedProxies()"), otherwise it returns
          * the latter (from the "SERVER_PROTOCOL" server parameter).
          *
-         * @return string 
+         * @return string|null 
          * @static 
          */ 
         public static function getProtocolVersion()
@@ -7675,8 +8230,7 @@
          * Returns the request body content.
          *
          * @param bool $asResource If true, a resource will be returned
-         * @return string|resource The request body content or a resource to read the body stream
-         * @throws \LogicException
+         * @return string|resource 
          * @static 
          */ 
         public static function getContent($asResource = false)
@@ -7687,7 +8241,7 @@
                     /**
          * Gets the Etags.
          *
-         * @return array The entity tags
+         * @return array 
          * @static 
          */ 
         public static function getETags()
@@ -7725,7 +8279,7 @@
          * Returns the preferred language.
          *
          * @param string[] $locales An array of ordered available locales
-         * @return string|null The preferred locale
+         * @return string|null 
          * @static 
          */ 
         public static function getPreferredLanguage($locales = null)
@@ -7734,9 +8288,9 @@
                         return $instance->getPreferredLanguage($locales);
         }
                     /**
-         * Gets a list of languages acceptable by the client browser.
+         * Gets a list of languages acceptable by the client browser ordered in the user browser preferences.
          *
-         * @return array Languages ordered in the user browser preferences
+         * @return array 
          * @static 
          */ 
         public static function getLanguages()
@@ -7745,9 +8299,9 @@
                         return $instance->getLanguages();
         }
                     /**
-         * Gets a list of charsets acceptable by the client browser.
+         * Gets a list of charsets acceptable by the client browser in preferable order.
          *
-         * @return array List of charsets in preferable order
+         * @return array 
          * @static 
          */ 
         public static function getCharsets()
@@ -7756,9 +8310,9 @@
                         return $instance->getCharsets();
         }
                     /**
-         * Gets a list of encodings acceptable by the client browser.
+         * Gets a list of encodings acceptable by the client browser in preferable order.
          *
-         * @return array List of encodings in preferable order
+         * @return array 
          * @static 
          */ 
         public static function getEncodings()
@@ -7767,9 +8321,9 @@
                         return $instance->getEncodings();
         }
                     /**
-         * Gets a list of content types acceptable by the client browser.
+         * Gets a list of content types acceptable by the client browser in preferable order.
          *
-         * @return array List of content types in preferable order
+         * @return array 
          * @static 
          */ 
         public static function getAcceptableContentTypes()
@@ -7778,13 +8332,13 @@
                         return $instance->getAcceptableContentTypes();
         }
                     /**
-         * Returns true if the request is a XMLHttpRequest.
+         * Returns true if the request is an XMLHttpRequest.
          * 
          * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
          * @see https://wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
-         * @return bool true if the request is an XMLHttpRequest, false otherwise
+         * @return bool 
          * @static 
          */ 
         public static function isXmlHttpRequest()
@@ -7809,7 +8363,7 @@
          * This can be useful to determine whether or not to trust the
          * contents of a proxy-specific header.
          *
-         * @return bool true if the request came from a trusted proxy, false otherwise
+         * @return bool 
          * @static 
          */ 
         public static function isFromTrustedProxy()
@@ -8350,6 +8904,7 @@
                     /**
          * 
          *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestValidation()
          * @param array $rules
          * @param mixed $params
          * @static 
@@ -8361,6 +8916,7 @@
                     /**
          * 
          *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestValidation()
          * @param string $errorBag
          * @param array $rules
          * @param mixed $params
@@ -8373,6 +8929,7 @@
                     /**
          * 
          *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
          * @param mixed $absolute
          * @static 
          */ 
@@ -10542,7 +11099,7 @@
                         return $instance->exists($path);
         }
                     /**
-         * Determine if a file or delivery is missing.
+         * Determine if a file or directory is missing.
          *
          * @param string $path
          * @return bool 
@@ -10852,7 +11409,7 @@
                         return $instance->getAwsTemporaryUrl($adapter, $path, $expiration, $options);
         }
                     /**
-         * Get an array of all files in a delivery.
+         * Get an array of all files in a directory.
          *
          * @param string|null $directory
          * @param bool $recursive
@@ -10865,7 +11422,7 @@
                         return $instance->files($directory, $recursive);
         }
                     /**
-         * Get all of the files from the given delivery (recursive).
+         * Get all of the files from the given directory (recursive).
          *
          * @param string|null $directory
          * @return array 
@@ -10877,7 +11434,7 @@
                         return $instance->allFiles($directory);
         }
                     /**
-         * Get all of the directories within a given delivery.
+         * Get all of the directories within a given directory.
          *
          * @param string|null $directory
          * @param bool $recursive
@@ -10890,7 +11447,7 @@
                         return $instance->directories($directory, $recursive);
         }
                     /**
-         * Get all (recursive) of the directories within a given delivery.
+         * Get all (recursive) of the directories within a given directory.
          *
          * @param string|null $directory
          * @return array 
@@ -10902,7 +11459,7 @@
                         return $instance->allDirectories($directory);
         }
                     /**
-         * Create a delivery.
+         * Create a directory.
          *
          * @param string $path
          * @return bool 
@@ -10914,7 +11471,7 @@
                         return $instance->makeDirectory($path);
         }
                     /**
-         * Recursively delete a delivery.
+         * Recursively delete a directory.
          *
          * @param string $directory
          * @return bool 
@@ -13599,7 +14156,7 @@
      
 }
 
-    namespace Barryvdh\Debugbar { 
+    namespace Barryvdh\Debugbar\Facades { 
             /**
      * 
      *
@@ -13614,7 +14171,7 @@
      * @method static void warning(mixed $message)
      * @see \Barryvdh\Debugbar\LaravelDebugbar
      */ 
-        class Facade {
+        class Debugbar {
                     /**
          * Enable the Debugbar and boot, if not already booted.
          *
@@ -14136,6 +14693,62 @@
      
 }
 
+    namespace Fanky\Auth { 
+            /**
+     * 
+     *
+     */ 
+        class Auth {
+         
+    }
+     
+}
+
+    namespace Fanky\Admin { 
+            /**
+     * 
+     *
+     */ 
+        class Text {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class YouTube {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Thumb {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Pagination {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Mailer {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Cart {
+         
+    }
+     
+}
 
     namespace App\Facades { 
             /**
@@ -14158,6 +14771,16 @@
          *
          * @static 
          */ 
+        public static function getPhoneFromCode($code, $default = null)
+        {
+                        /** @var \App\Classes\Settings $instance */
+                        return $instance->getPhoneFromCode($code, $default);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
         public static function set($code, $value)
         {
                         /** @var \App\Classes\Settings $instance */
@@ -14173,9 +14796,18 @@
                         /** @var \App\Classes\Settings $instance */
                         return $instance->fileSrc($value);
         }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAlterImage($url, $replace)
+        {
+                        /** @var \App\Classes\Settings $instance */
+                        return $instance->getAlterImage($url, $replace);
+        }
          
     }
-
             /**
      * 
      *
@@ -14534,13 +15166,14 @@
          *
          * @param string $name
          * @param callable $callback
+         * @param array $options (optional, it will be combined with the options to be applied)
          * @return \Lavary\Menu\Builder 
          * @static 
          */ 
-        public static function make($name, $callback)
+        public static function make($name, $callback, $options = [])
         {
                         /** @var \Lavary\Menu\Menu $instance */
-                        return $instance->make($name, $callback);
+                        return $instance->make($name, $callback, $options);
         }
                     /**
          * Loads and merges configuration data.
@@ -15400,7 +16033,6 @@
      * JsonLd is a facade for the `JsonLd` implementation access.
      *
      * @see \Artesaos\SEOTools\Contracts\JsonLd
-     * @method static \Artesaos\SEOTools\Contracts\JsonLd setName(string $name)
      */ 
         class JsonLd {
                     /**
@@ -15697,6 +16329,27 @@
      
 }
 
+    namespace Illuminate\Support { 
+            /**
+     * 
+     *
+     */ 
+        class Collection {
+                    /**
+         * 
+         *
+         * @see \Barryvdh\Debugbar\ServiceProvider::register()
+         * @static 
+         */ 
+        public static function debug()
+        {
+                        return \Illuminate\Support\Collection::debug();
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Http { 
             /**
      * 
@@ -15706,6 +16359,7 @@
                     /**
          * 
          *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestValidation()
          * @param array $rules
          * @param mixed $params
          * @static 
@@ -15717,6 +16371,7 @@
                     /**
          * 
          *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestValidation()
          * @param string $errorBag
          * @param array $rules
          * @param mixed $params
@@ -15729,6 +16384,7 @@
                     /**
          * 
          *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
          * @param mixed $absolute
          * @static 
          */ 
@@ -15743,6 +16399,7 @@
 
 
 namespace  { 
+            class Auth extends \Illuminate\Support\Facades\Auth {}
             class App extends \Illuminate\Support\Facades\App {}
             class Artisan extends \Illuminate\Support\Facades\Artisan {}
             class Blade extends \Illuminate\Support\Facades\Blade {}
@@ -18711,12 +19368,11 @@ namespace  {
             class Form extends \Collective\Html\FormFacade {}
             class Html extends \Collective\Html\HtmlFacade {}
             class Image extends \Intervention\Image\Facades\Image {}
-            class Debugbar extends \Barryvdh\Debugbar\Facade {}
-            class Auth extends \Fanky\Auth\Auth {}
+            class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
+            class AuthAdmin extends \Fanky\Auth\Auth {}
             class Text extends \Fanky\Admin\Text {}
             class YouTube extends \Fanky\Admin\YouTube {}
             class Settings extends \App\Facades\Settings {}
-            class S extends \App\Facades\Settings {}
             class Thumb extends \Fanky\Admin\Thumb {}
             class Pagination extends \Fanky\Admin\Pagination {}
             class Mailer extends \Fanky\Admin\Mailer {}

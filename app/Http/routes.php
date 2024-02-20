@@ -20,15 +20,19 @@ Route::group(
 
         Route::post('user/upload-image', 'AjaxController@postUploadUserImage')->name('uploadUserImage');
         Route::post('user/save-info/{id}', 'AjaxController@postUserSaveInfo')->name('userSaveInfo');
+
+        Route::post('send-opinion', 'AjaxController@postSendOpinion')->name('send-opinion');
     }
 );
 
 Route::get('/dashboard', [PageController::class, 'dashboard'])
     ->middleware(['auth.site'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::group([], function () {
+Route::group(
+    [],
+    function () {
         Route::get('/', ['as' => 'main', 'uses' => 'WelcomeController@index']);
         Route::any('news', ['as' => 'news', 'uses' => 'NewsController@index']);
         Route::any('news/{alias}', ['as' => 'news.item', 'uses' => 'NewsController@item']);
@@ -45,9 +49,17 @@ Route::group([], function () {
         Route::any('policy', ['as' => 'policy', 'uses' => 'PageController@policy']);
 
         Route::any('catalog', ['as' => 'catalog.index', 'uses' => 'CatalogController@index']);
-
+        Route::any(
+            'catalog/add-opinion/{id}',
+            ['as' => 'catalog.add-opinion', 'uses' => 'CatalogController@addOpinion']
+        )
+            ->where('alias', '([0-9]+)');
         Route::any('catalog/{alias}', ['as' => 'catalog.view', 'uses' => 'CatalogController@view'])
             ->where('alias', '([A-Za-z0-9\-\/_]+)');
+
+        Route::get('opinion-success/{id}', 'CatalogController@getOpinionSuccess')
+            ->name('opinion-success');
+
 
         Route::any('{alias}', ['as' => 'default', 'uses' => 'PageController@page'])
             ->where('alias', '([A-Za-z0-9\-\/_]+)');
